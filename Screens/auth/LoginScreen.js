@@ -1,3 +1,4 @@
+import { CardStyleInterpolators } from "@react-navigation/stack";
 import React, { useState } from "react";
 import {
   StyleSheet,
@@ -11,7 +12,6 @@ import {
   Pressable,
   Image,
 } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
 
 const initialState = {
   login: "",
@@ -19,13 +19,13 @@ const initialState = {
   password: "",
 };
 
-export default function RegistrationScreen() {
+export default function RegistrationScreen({ navigation }) {
   const [state, setState] = useState(initialState);
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
 
   const [isEmailFocus, setIsEmailFocus] = useState(false);
   const [isPasswordFocus, setIsPasswordFocus] = useState(false);
-  const [isPasswordHidden, setIsPasswordHidden] = useState(false);
+  const [isPasswordHidden, setIsPasswordHidden] = useState(true);
 
   const keyboardHide = () => {
     setIsShowKeyboard(false);
@@ -36,6 +36,7 @@ export default function RegistrationScreen() {
     keyboardHide();
     console.log(state);
     setState(initialState);
+    navigation.navigate("Home")
   };
 
   return (
@@ -44,7 +45,7 @@ export default function RegistrationScreen() {
         <KeyboardAvoidingView behavior={Platform.OS === "ios" && "padding"}>
           <View style={styles.container}>
             <Image
-              source={require("../assets/images/screenBg.png")}
+              source={require("../../assets/images/screenBg.png")}
               style={styles.image}
             />
             <View style={styles.formWrap}>
@@ -111,9 +112,14 @@ export default function RegistrationScreen() {
                    <Pressable onPress={handleSubmit} style={styles.button}>
                     <Text style={styles.buttonText}>Войти</Text>
                   </Pressable>
+                  <Pressable onPress={() => {navigation.navigate("Register")}}   style={{
+                     
+                     marginBottom: 100,
+                   }}>
                   <Text style={styles.logInText}>
                     Нет аккаунта? Зарегистрироваться
                   </Text>
+                  </Pressable>
                 </View>
               )}
             </View>
@@ -187,7 +193,7 @@ const styles = StyleSheet.create({
     fontWeight: "400",
     lineHeight: 19,
     fontFamily: "Roboto-Regular",
-    marginBottom: 100,
+    // marginBottom: 100,
   },
   toggleButton: {
     position: "absolute",
