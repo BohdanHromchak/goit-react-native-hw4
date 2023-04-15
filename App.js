@@ -36,9 +36,9 @@ export default function App() {
           component={LoginScreen}
         />
         <AuthStack.Screen
-          // options={{
-          //   headerShown: false,
-          // }}
+          options={{
+            headerShown: false,
+          }}
           name="Home"
           component={Home}
         />
