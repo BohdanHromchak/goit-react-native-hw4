@@ -85,6 +85,7 @@ export default function RegistrationScreen({ navigation }) {
                   }
                   placeholder="Адрес электронной почты"
                   placeholderTextColor={"#BDBDBD"}
+       
                   style={{
                     ...styles.input,
                     borderColor: isEmailFocus ? "#ff6c00" : "#e8e8e8",
